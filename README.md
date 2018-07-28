@@ -1,15 +1,15 @@
 # Development Environment
 I format/break/destroy my machines quite regularly. It is rather tedious to continually have to install the same software all the time and one of my regular work disruptions is forgetting to install a specific software. So I am attempting to aggregate all the possible build artefacts I need into this page; in order to streamline installation across multiple machines and environments.
 
-This is an exploratory piece, and I will be adding to it over the next few weeks. If you have any advice, please raise an issue or email me. 
+This is an exploratory piece, and I will be adding to it over the next few weeks. If you have any advice, please raise an issue, submit a pull request or email me. 
 ## Methods
-There are a few ways to automate development environment setups. I am interested in creating a *one size fits all* service that will look at the currently running OS, the machine specifications, a few other things, and then install the packages you want with (hopefully) no supervision.
+There are a few ways to automate development environment setups. I am interested in creating a *one size fits all* service that will look at the currently running OS, the machine specifications, a few other things, and then install the packages the user wants with (hopefully) no supervision.
 ### Vagrant
-I previously used vagrant with a simple Vagrantfile that provisions my box with the correct applications. 
+I previously used vagrant with a simple Vagrantfile that provisioned my box with the correct applications. 
 If you don't know what Vagrant is; the [documentation](https://www.vagrantup.com/intro/index.html) lists it as follows:
 > Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.
-> 
-The main issue with this for me is the fact that it is headless. Also, if I am running an Ubuntu installation - it doesn't make much sense to run Vagrant when I could just install the packages I need onto the machine itself. (Obviously unless the work I am doing depends on something like python2.7, or anything that has very specific dependencies which could make other development a nightmare)
+
+The main issue with this for me is the fact that it is headless. Also, if I am running an Ubuntu installation - it doesn't make much sense to run Vagrant when I could just install the packages I need onto the machine itself. (Unless the work I am doing depends on something like python2.7, or anything that has very specific dependencies which could make other development a nightmare)
 
 However, I do think that it might be useful to take a look at the Vagrantfile I was using in order to see how I could improve it, and then possibly look at other tools that could automate the setup alongside it.
 ```Vagrantfile
@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.synced_folder "../../Code", "/opt/vagrant_data"
 
-    config.vm.provision "shell", privileged: false inline: <<-SHELL
+    config.vm.provision "shell", inline: <<-SHELL
         apt-get update
         apt-get install -y git
         apt-get install python-dev python-pip -q -y
@@ -40,7 +40,7 @@ A brief description of what is happening above. This Vagrantfile is simply run b
 
 There are a few problems with this Vagrantfile that I would like to fix. Firstly, the xenial64 box is running 16.04 - and while that distribution is fine I would like to use 18.04 in the future. However, at the time of writing it seems there aren't any major 18.04 boxes available at the vagrant box website [here](https://app.vagrantup.com/boxes/search).  So I will have to change that at another stage. 
 
-Then I install `python-dev`, but the issue with that is that it will make my installation dependent on a specific python version. However, the work I am doing currently requires that I have python 2.7 as the default.  So I want to use a tool like [pyenv](https://github.com/pyenv/pyenv) to install specific python versions on the fly. So in order to do this, I would need to add the following lines to the provisioning script:
+Then I install `python-dev`, but the issue with that is that it will make my installation dependent on a specific python version. However, the work I am doing currently requires that I have python 2.7 as the default.  So I want to use a tool like [pyenv](https://github.com/pyenv/pyenv) to install specific python versions on the fly. In order to do this, I would need to add the following lines to the provisioning script:
 ```shell
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
@@ -133,16 +133,16 @@ else
   exit 1
 fi
 ```
-This is beautiful :heart_eyes: @bogdanvlviv
+This is beautiful :heart_eyes: [@bogdanvlviv](https://github.com/bogdanvlviv)
 
-So I simply appended my Vagrantfile with the following commands:
+So I simply appended the following commands to my Vagrantfile:
 ```Vagrantfile
 # python
     config.vm.provision :shell, path: 'install-pyenv.sh', privileged: true
     config.vm.provision :shell, path: 'python/install-python.sh', args: 'pyenv 2.7.15', privileged: true
     config.vm.provision :shell, path: 'python/install-python.sh', args: 'pyenv 3.6.5', privileged: true
 ```
-And oom :boom: it worked, and when I ssh onto the vagrant box and run `pyenv versions` I get the following output:
+And boom :boom: it worked. Now when I ssh onto the vagrant box and run `pyenv versions` I get the following output:
 ```shell
 root@ubuntu-xenial:~# pyenv versions
   2.7.15

@@ -1,0 +1,2 @@
+# Ubuntu
+My plan with this is to create a simple, and somewhat crude script that can be used to install a general base. Then I want to compare the ease of using a scripted installation versus other methods. This also has the added bonus of allowing me to create system snapshots and then using those snapshots as a means of building and rebuilding my own instances.

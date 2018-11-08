@@ -6,11 +6,6 @@ sudo apt-get install -y g++
 git config --global user.email "angusmackenzie@gmail.com"
 git config --global user.name "Angus Mackenzie"
 sudo apt-get install -y git
-chmod 777 install-pyenv.sh
-chmod 777 install-python.sh
-sudo /bin/bash ./install-pyenv.sh
-sudo /bin/bash ./install-python.sh pyenv 2.7.15
-sudo /bin/bash ./install-python.sh pyenv 3.6.5
 sudo apt-get install -y build-essential
 sudo apt install -y default-jdk
 sudo apt install -y curl

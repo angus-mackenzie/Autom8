@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y \
     default-jdk \
     build-essential \
     curl \
-    && git config --global user.email "angusmackenzie@gmail.com" \
-    && git config --global user.name "Angus Mackenzie" \
+    && git config --global user.email "myemail@gmail.com" \
+    && git config --global user.name "Angus" \
     && rm -rf /var/lib/apt/lists/*

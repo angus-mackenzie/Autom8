@@ -7,7 +7,7 @@ To build these containers you can simply run: `docker build -t <name> . ` where 
 
 Once that has finished you simply need to run `docker run -it <name>` where `<name>` is the name you specified when you built the container.
 
-These dockers have the following:
+These containers have the following:
 * python2/3
 * C++
 * Git

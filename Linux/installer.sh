@@ -4,8 +4,8 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y g++
 sudo apt-get install -y git
-git config --global user.email "angusmackenzie@gmail.com"
-git config --global user.name "Angus Mackenzie"
+git config --global user.email "myemail@gmail.com"
+git config --global user.name "Angus"
 chmod 777 install-pyenv.sh
 chmod 777 install-python.sh
 sudo ./install-pyenv.sh

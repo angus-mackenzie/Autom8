@@ -7,6 +7,12 @@ To build these containers you can simply run: `docker build -t <name> . ` where 
 
 Once that has finished you simply need to run `docker run -it <name>` where `<name>` is the name you specified when you built the container.
 
+These dockers have the following:
+* python2/3
+* C++
+* Git
+* Java
+
 # Resources
 * [Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#cmd)
 * [Getting Started with Docker](https://docs.docker.com/get-started/part2/#run-the-app)

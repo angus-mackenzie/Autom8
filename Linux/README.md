@@ -1,2 +1,16 @@
 # Ubuntu
-My plan with this is to create a simple, and somewhat crude script that can be used to install a general base. Then I want to compare the ease of using a scripted installation versus other methods. This also has the added bonus of allowing me to create system snapshots and then using those snapshots as a means of building and rebuilding my own instances.
+My plan with this was to create a simple, and somewhat crude script that can be used to install a general base set of tools. Then I want to compare the ease of using a scripted installation versus other methods.
+
+This installs the following:
+* git
+* C++
+* pyenv
+* python
+* java
+* VSCode
+* VSCode extensions:
+    * C++ tools
+    * Java
+    * Markdown
+    * Python
+    * Wakatime

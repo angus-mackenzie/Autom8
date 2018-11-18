@@ -12,3 +12,6 @@ ehthumbs.db
 Icon?
 Thumbs.db
 koding-docker-compose
+
+# Vagrant Files
+*.vagrant

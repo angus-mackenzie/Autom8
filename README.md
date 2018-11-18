@@ -1,9 +1,7 @@
 # Autom8
 I have been meaning to simplify my development environment setup. I thought i'd try different tools to get a feel of whats out there.
 
-In this repo, I created different tools and evaluated them for my needs - check out each tool below:
+These are some of the tools I tried, and how I implemented them.
 * [Bash Scripting](/Linux)
 * [Vagrant](/Vagrant)
-* [Koding - tbd]()
-* [Docker - tbd]()
-* [Ansible - tbd]()
+* [Docker](/Docker)
